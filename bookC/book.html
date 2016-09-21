@@ -1,0 +1,956 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>翻书</title>
+<style>
+*{margin:0;padding:0}
+body {
+    font-family: Arial,'Microsoft YaHei';
+	background:url(images/bg.gif) repeat;
+	}
+li {
+    list-style: none;
+}
+em, i, dfn {
+    font-style: normal;
+}
+.book{
+	box-shadow:0px 10px 20px 0 rgba(0,0,0,0.3);
+	width:1033px;
+	height:540px;
+	border:1px solid #7a6454;
+	background:url(images/book.png) repeat-y;
+	margin-top:66px;
+	position:relative; left:50%;
+	margin-left:-524px;
+	z-index:7;
+	padding:7px;
+	}
+.book .bookContentBg{
+	width:480px;
+	height:540px;
+	background:url(images/bg.gif) repeat;
+	border:1px solid #816e62;
+	}
+.fl{
+	float:left;
+	}
+.fr{
+	float:right;
+	}
+.book .bookPaple1{
+	width:12px;
+	height:520px;
+	background:#e2dcd8;
+	box-shadow:0 0 5px 0 rgba(71,30,0,0.5);
+	position:absolute;
+	top:17px;
+	left:63px;
+	}
+.book .bookPaple2{
+	width:8px;
+	height:520px;
+	background:#e8e4e2;
+	box-shadow:0 0 5px 0 rgba(71,30,0,0.5);
+	position:absolute;
+	top:17px;
+	left:67px;
+	}
+.book .bookPaple3{
+	width:4px;
+	height:520px;
+	background:#edeae9;
+	box-shadow:0 0 5px 0 rgba(71,30,0,0.5);
+	position:absolute;
+	top:17px;
+	left:71px;
+	}
+.book .bookPaple4{
+	width:12px;
+	height:520px;
+	background:#e2dcd8;
+	box-shadow:0 0 5px 0 rgba(71,30,0,0.5);
+	position:absolute;
+	top:17px;
+	right:60px;
+	}
+.book .bookPaple5 {
+    width: 8px;
+    height: 520px;
+    background: #e8e4e2;
+    box-shadow: 0 0 5px 0 rgba(71,30,0,0.5);
+    position: absolute;
+    top: 17px;
+    right: 64px;
+}
+.book .bookPaple6 {
+    width: 4px;
+    height: 520px;
+    background: #edeae9;
+    box-shadow: 0 0 5px 0 rgba(71,30,0,0.5);
+    position: absolute;
+    top: 17px;
+    right: 67px;
+}
+.book .bookMain{
+	width:900px;
+	height:520px;
+	position:absolute;
+	top:17px;
+	left:75px;
+	z-index:9
+	}
+.book .bookMain .firstPaper{
+	width:444px;
+	height:520px;
+	background:#f3f3f3 url(images/bookbg.png) repeat-y;
+	position:absolute;
+	box-shadow:0 0 5px 0 rgba(71,30,0,0.1);
+	left:0; 
+	z-index:0;
+	transform:translateZ(0);
+	}
+.book .bookMain .bookRing{
+	width:47px;
+	height:137px;
+	z-index:99;
+	position:absolute;
+	top:0;
+	left:427px;
+	
+	}
+.book .bookMain .bookRing .ring1{
+	top:34px;
+	width:47px;
+	height:20px;
+	background:url(images/ring.png) no-repeat;
+	position:absolute;
+	}
+.book .bookMain .bookRing .ring2{
+	top:72px;
+	width:47px;
+	height:20px;
+	background:url(images/ring.png) no-repeat;
+	position:absolute;
+	}
+.book .bookMain .bookRing .ring3{
+	top:111px;
+	width:47px;
+	height:20px;
+	background:url(images/ring.png) no-repeat;
+	position:absolute;
+	}
+.book .bookMain .paper{
+	width:444px;
+	height:520px;
+	position:absolute;
+	right:0;
+	transform-origin: -6px;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transition: .3s linear;
+	}
+.book .bookMain .paper .bookContentLeft{
+	width:444px;
+	height:520px;
+	background:#f3f3f3 url(images/bookbg.png) repeat-y;
+	position:absolute;
+	box-shadow:0 0 5px 0 rgba(71,30,0,0.1);
+	}
+.book .bookMain .paper .tabMain {
+    overflow: hidden;
+    position: absolute;
+    cursor: pointer;
+    width: 50px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 14px;
+    background: url(images/bookbg.png) repeat-y;
+    left: auto;
+    right: -50px;
+    box-shadow: -2px 0 2px rgba(71,30,0,0.1),-2px -2px 2px rgba(71,30,0,0.1),-2px 2px 2px rgba(71,30,0,0.1);
+}
+.book .bookMain .paper .bookContentLeft .tabMain {
+    overflow: hidden;
+    position: absolute;
+    cursor: pointer;
+    transition: .3 linear;
+    width: 50px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 14px;
+    background: url(images/bookbg.png) repeat-y;
+    box-shadow: -2px 0 2px rgba(71,30,0,0.1),-2px -2px 2px rgba(71,30,0,0.1),-2px 2px 2px rgba(71,30,0,0.1);
+}
+.book .bookMain .paper .bookContentLeft .tabMain {
+    background: transparent;
+    color: #fff;
+    box-shadow: 2px 0 2px rgba(71,30,0,0.1),2px -2px 2px rgba(71,30,0,0.1),2px 2px 2px rgba(71,30,0,0.1);
+}
+.book .bookMain .firstPaper .tabMain {
+    overflow: hidden;
+    position: absolute;
+    cursor: pointer;
+    transition: .3 linear;
+    width: 50px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 14px;
+    background: url(images/bookbg.png) repeat-y;
+    box-shadow: -2px 0 2px rgba(71,30,0,0.1),-2px -2px 2px rgba(71,30,0,0.1),-2px 2px 2px rgba(71,30,0,0.1);
+}
+.book .bookMain .firstPaper .tabMain {
+    left: -50px;
+    color: #e15671;
+}
+.book .bookMain .paper .bookContentLeft .bookTitle{
+	width:358px;
+	height:87px;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	background:url(images/dot.png) repleat-x bottom;
+	font-size:30px;
+	color:#000;
+	margin:0 auto;
+	text-align:center;
+	line-height:87px;
+	}
+.book .bookMain .paper .bookContentLeft .bookContent {
+    padding: 0 34px;
+    height: 410px;
+    margin: 0 auto;
+    position: relative;
+}
+.book .bookMain .paper .bookContentLeft .bookContent .text {
+    height: auto;
+    background: url(images/dot2.png) repeat;
+    height: 253px;
+    line-height: 42px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: normal;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    color: #7a6757;
+    word-wrap: break-word;
+}
+.book .bookMain .firstPaper .bookTitle {
+    width: 358px;
+    height: 87px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background: none;
+    font-size: 30px;
+    color: #000;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 87px;
+}
+.book .bookMain .firstPaper .bookContent {
+    padding: 0 34px;
+    height: 410px;
+    margin: 0 auto;
+    position: relative;
+}
+.book .bookMain .firstPaper .bookContent .list.half {
+    width: 50%;
+    float: left;
+}
+.book .bookMain .firstPaper .bookContent .list li {
+    height: 26px;
+    line-height: 26px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.book .bookMain .firstPaper .bookContent .list li:hover .box {
+    background-color: #e15671;
+}
+.book .bookMain .firstPaper .bookContent .list li:hover span {
+    background: none;
+    color: #fff;
+}
+.book .bookMain .firstPaper .bookContent .list li:hover em {
+    height: 26px;
+    float: right;
+    color: #fff;
+}
+.book .bookMain .firstPaper .bookContent .list li:hover .line {
+    display: none;
+}
+.book .bookMain .firstPaper .bookContent .list.mar_md li {
+    margin-bottom: 7px;
+}
+.book .bookMain .firstPaper .bookContent .list .box {
+    padding: 0 13px;
+    border-radius: 13px;
+}
+.book .bookMain .firstPaper .bookContent .list .middle {
+    height: 26px;
+    width: 100%;
+    margin-bottom: -26px;
+}
+.book .bookMain .firstPaper .bookContent .list .item {
+    padding: 0 13px;
+}
+.book .bookMain .firstPaper .bookContent .list li span {
+    padding-right: 4px;
+    height: 26px;
+    float: left;
+    color: #7a6757;
+}
+.book .bookMain .firstPaper .bookContent .list li em {
+    height: 26px;
+    color: #7a6757;
+    float: right;
+}
+.book .bookMain .firstPaper .bookContent .list li .line {
+    height: 13px;
+    border-bottom: 1px dashed #dbdbdb;
+    margin-right: 22px;
+}
+.book .bookMain .paper .bookContentRight {
+    width: 444px;
+    height: 520px;
+    background: #f3f3f3 url(images/bookbg.png) repeat-y;
+    position: absolute;
+    box-shadow: 0 0 5px 0 rgba(71,30,0,0.1);
+    transform: translateZ(-2px) rotateY(180deg);
+    -webkit-transform: translateZ(-2px) rotateY(180deg);
+    -moz-transform: translateZ(-2px) rotateY(180deg);
+    backface-visibility: hidden;
+	}
+.book .bookMain .paper .bookContentRight .tabMain {
+    overflow: hidden;
+    position: absolute;
+    cursor: pointer;
+    transition: .3 linear;
+    width: 50px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 14px;
+    background: url(images/bookbg.png) repeat-y;
+    box-shadow: -2px 0 2px rgba(71,30,0,0.1),-2px -2px 2px rgba(71,30,0,0.1),-2px 2px 2px rgba(71,30,0,0.1);
+}
+.book .bookMain .paper .bookContentRight .tabMain {
+    right: auto;
+    left: -50px;
+}
+.book .bookMain .paper .bookContentRight .bookTitle {
+    width: 358px;
+    height: 87px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background: url(images/dot.png) repeat-x bottom;
+    font-size: 30px;
+    color: #000;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 87px;
+}
+.book .bookMain .paper .bookContentRight .bookContent {
+    padding: 0 34px;
+    height: 410px;
+    margin: 0 auto;
+    position: relative;
+}
+.book .bookMain .paper .bookContentRight .bookContent .text {
+    height: auto;
+    background: url(images/dot2.png) repeat;
+    height: 253px;
+    line-height: 42px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: normal;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    color: #7a6757;
+    word-wrap: break-word;
+}
+.book .bookMain .paper .bookContentRight .bookContent .text div {
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
+<script src="images/jquery-1.11.3.min.js"></script>
+<script>
+$(function(){
+	var d = ["#ff991d", "#54c119", "#1f9fcf", "#1b5fb3", "#a55bd8", "#e15671"];
+	var b=$(".paper");
+	for(var i=0;i<b.length;i++){
+		b.eq(i).css({
+			zIndex: (b.length - i) * 2,
+			transform:"rotateY(0deg) translateZ("+(b.length-i)+"px)"
+			})
+		var c=b.eq(i).find(".tabMain");
+		for(var e=0;e<c.length;e++){
+			c.eq(e).css("top",(i+1)*30+"px")
+			}
+		}
+	$(".firstPaper").css({
+		transform:"translateZ("+0+"px)"
+		})
+	var l=$(".bookContentLeft");
+	var r=$(".bookContentRight");
+	for(var f=0;f<l.length;f++){
+		var h=l.eq(f).find('.tabMain');
+		h.css("background",d[f%6])
+		h.on("click",function(){
+			$(".firstPaper .tabMain").css({
+				background: "#e15671",
+                color: "#fff"
+				})
+		    for (var j = 0; j < $(this).parent().parent(".paper").index(); j++) {
+			   b.eq(j).css({
+                    transform: "rotateY(-180deg) translateZ(" + (-(j + 1)) + "px)",
+					 zIndex: (j + 1) * 2
+					})
+				if (j < $(this).parent().parent(".paper").index() - 1) {
+                    r.eq(j).find(".tabMain").css({
+                        background: d[(j) % 6],
+                        color: "#fff"
+                    })
+                }
+				}
+				
+			})
+		}
+		for(var f=0;f<r.length;f++){
+		var h= r.eq(f).find(".tabMain");
+		h.css("color", d[f % 6]);
+		 h.on("click", function() {
+			for (var j = $(this).parent().parent(".paper").index(); j < $(".paper").length; j++) {
+				b.eq(j).css({
+					transform: "rotateY(0deg) translateZ(" + (b.length - j) + "px)",
+					zIndex:(b.length-j)*2
+					})
+				 if(j<$(".paper").length){
+					r.eq(j - 1).find(".tabMain").css({
+                         background:"#fff",
+                        color: d[(j - 1) % 6]
+                     })
+					 }
+				}
+				
+			})
+		}
+	  $(".firstPaper .tabMain").on("click",function(){
+		   $(this).css({
+			  background:"#fff",
+			  color: "#e15671"
+		  });
+		  for(var j=0;j<b.length;j++){
+			 b.eq(j).css({
+				 transform:"rotateY(0deg) translateZ("+(b.length-j)+"px)",
+				  zIndex:(b.length-j)*2
+				 })
+			  }
+		  })
+	var a = $(".firstPaper li");
+    for (var f = 0; f < a.length; f++) {
+        a.get(f).Index = f;
+        a.eq(f).on("click", function() {
+            var j = Math.floor(this.Index / 2);
+            if (j) {
+                $(".firstPaper .tabMain").css({
+                    background: "#e15671",
+                    color: "#fff"
+                })
+            }
+            for (var l = 0; l < j; l++) {
+                b.eq(l).css({
+                    transform: "rotateY(-180deg) translateZ(" + (-(l + 1)) + "px)",
+                    zIndex: (l + 1) * 2
+                });
+                if (l < j - 1) {
+                    r.eq(l).find(".tabMain").css({
+                        background: d[(l) % 6],
+                        color: "#fff"
+                    })
+                }
+            }
+        })
+    }
+
+	})
+</script>
+</head>
+
+<body>
+<div class="book" id="bookTitle">
+  <div class="bookContentBg fl"></div>
+  <div class="bookContentBg fr"></div>
+  <div class="box" id="book">
+    <div class="bookMain">
+       <div class="firstPaper rotate">
+         <div class="tabMain" style="color: rgb(225, 86, 113);">01-02</div>
+         <div class="bookTitle">课程目录</div>
+         <div class="bookContent">
+           <ul class="list mar_md half">
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>课程目录</span>
+                 <em>01</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>JS入门</span>
+                 <em>02</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>数据类型</span>
+                 <em>03</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>定时器</span>
+                 <em>04</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>字符串</span>
+                 <em>05</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>DOM</span>
+                 <em>06</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>BOM</span>
+                 <em>07</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>事件基础</span>
+                 <em>08</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>事件应用</span>
+                 <em>09</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>正则表达式</span>
+                 <em>10</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>面向对象基础</span>
+                 <em>11</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>高级面向对象</span>
+                 <em>12</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+           </ul>
+           <ul class="list mar_md half">
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>组件开发</span>
+                 <em>13</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>JQuery基础</span>
+                 <em>14</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>ajax</span>
+                 <em>15</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>JQuery应用</span>
+                 <em>16</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>JavaScript兼容性</span>
+                 <em>17</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>ECMAScript 6</span>
+                 <em>18</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>zepto&touch.js</span>
+                 <em>19</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>nodeJS</span>
+                 <em>20</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>Git及GitHub</span>
+                 <em>21</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+             <li>
+               <div class="box">
+                 <div class="middle"></div>
+               </div>
+               <div class="item">
+                 <span>react</span>
+                 <em>22</em>
+                 <div class="line"></div>
+               </div>
+             </li>
+           </ul>
+         </div>
+       </div>
+       <div class="paper" style="z-index: 22; transform: rotateY(0deg) translateZ(11px);">
+         <div class="bookContentLeft">
+           <div class="tabMain" style="top: 30px;background: rgb(255, 153, 29);">03-04</div>
+           <div class="bookTitle">JS入门</div>
+           <div class="bookContent">
+             <div class="text">
+               <p>元素获取getElementById、事件类型：鼠标、键盘、窗口、表单、自定义事件、初识函数、变量声明、变量赋值、变量命名规则、关键字、保留字、window、元素基本属性操作、.操作符和[]操作符、if和else、for循环、this关键字、getElementsByTagName、getElementsByClassName、querySelector、querySelectorAll、自定义属性之索引。</p>
+             </div>
+           </div>
+         </div>
+         <div class="bookContentRight">
+            <div class="tabMain">03-04</div>
+            <div class="bookTitle">数据类型</div>
+            <div class="bookContent">
+              <div class="text">
+                <p>JS的6大数据类型、类型检测、数据类型转换：强制类型转换、隐式类型转换、运算符：算术运算符、赋值运算符、关系运算符、逻辑运算符、位运算符，运算符优先级、函数定义、函数表达式、形参、实参、不定参、类数组对象对象arguments、返回值、作用域、作用域链、流程控制：if、else、switch、case、for、while、break、continue</p>
+              </div>
+            </div>
+         </div>
+       </div>
+       <div class="paper">
+         <div class="bookContentLeft">
+           <div class="tabMain" style="top: 60px; background: rgb(84, 193, 25);">05-06</div>
+           <div class="bookTitle">定时器</div>
+           <div class="bookContent">
+             <div class="text">
+               <p>JS的6大数据类型、类型检测、数据类型转换：强制类型转换、隐式类型转换、运算符：算术运算符、赋值运算符、关系运算符、逻辑运算符、位运算符，运算符优先级、函数定义、函数表达式、形参、实参、不定参、类数组对象对象arguments、返回值、作用域、作用域链、流程控制：if、else、switch、case、for、while、break、continue</p>
+             </div>
+           </div>
+         </div>
+         <div class="bookContentRight">
+            <div class="tabMain">05-06</div>
+            <div class="bookTitle">字符串</div>
+            <div class="bookContent">
+              <div class="text">
+                <p>字符串：length、charAt、charCodeAt、indexOf...，字符编码：ASCII、Unicode、UTF-8...，JSON：数据交换格式、规则、用途，JSON对象：parse、stringify，for...in，mTween+、数学对象：ceil、floor、round、abs、random、常用随机值公式，数组：length、push、pop、sort...，排序算法：冒泡排序（BubbleSort）、快速排序（QuickSort）</p>
+              </div>
+            </div>
+         </div>
+       </div>
+       <div class="paper">
+         <div class="bookContentLeft">
+           <div class="tabMain" style="top: 90px; background: rgb(31, 159, 207);">07-08</div>
+           <div class="bookTitle">DOM</div>
+           <div class="bookContent">
+             <div class="text">
+               <p>文档对象模型DOM、DOM结构、DOM树、DOM节点、节点类型、节点关系、节点常用操作：nodeType、nodeName、子节点操作children...，兄弟节点操作：perviousElementSiblings...，父节点操作：parentNode...，节点盒模型信息：clientWidth、getBoundingClientRect...，元素CURD操作、表格操作、表单操作、表单事件</p>
+             </div>
+           </div>
+         </div>
+         <div class="bookContentRight">
+            <div class="tabMain">07-08</div>
+            <div class="bookTitle">BOM</div>
+            <div class="bookContent">
+              <div class="text">
+                <p>浏览器对象模型BOM - Browser Object Model、常用方法：open、close，常用属性： 用户代理信息navigator.userAgent、地址栏信息：location、hash、search（queryString），窗口尺寸、可视区尺寸、滚动距离、文档内容高度，常用事件：onscroll、onresize、土豆网遮罩层、土豆网登录弹出层、返回顶部</p>
+              </div>
+            </div>
+         </div>
+       </div>
+       <div class="paper">
+         <div class="bookContentLeft">
+           <div class="tabMain" style="top: 120px; background: rgb(27, 95, 179);">09-10</div>
+           <div class="bookTitle">事件基础</div>
+           <div class="bookContent">
+             <div class="text">
+               <p>事件类型，事件对象：event、event.clientX、event.target、事件流（捕获阶段、目标阶段、冒泡阶段）、事件委托、阻止冒泡event.stopPropagation()、事件函数绑定：属性绑定、addEventListener、事件函数注销，键盘事件：keydown，event.which...，事件默认行为，阻止默认行为：event.preventDefault()、上下文菜单事件：contextmenu</p>
+             </div>
+           </div>
+         </div>
+         <div class="bookContentRight">
+            <div class="tabMain">09-10</div>
+            <div class="bookTitle">事件应用</div>
+            <div class="bookContent">
+              <div class="text">
+                <p>拖拽原理、限制范围的拖拽、京东商品图片放大镜预览效果、碰撞检测、仿window桌面拖拽画框选择元素、拖拽改变大小、模拟滚动条、模拟自适应内容的滚动条、滚轮事件：mousewheel/DOMMouseScroll、event.wheelDelta/event.detail、鼠标滚轮控制模拟滚动条、滚轮控制数字加减</p>
+              </div>
+            </div>
+         </div>
+       </div>
+       <div class="paper">
+         <div class="bookContentLeft">
+           <div class="tabMain" style="top: 150px; background: rgb(165, 91, 216);">11-12</div>
+           <div class="bookTitle">正则表达式</div>
+           <div class="bookContent">
+             <div class="text">
+               <p>RegExp对象、方法：test、search、match、replace，修饰符：i（ignore）、g（global），量词：＋、＊、？，子项：()，转义字符：\、次数匹配：{}，任意字符：.，字符集合／字符范围：[]，首位匹配符：^、$，实例：敏感词过滤、日期格式化、html标签过滤，阻止xss跨站脚本攻击、找重复项最多的字符和个数、QQ/邮箱/手机号码/邮箱 验证</p>
+             </div>
+           </div>
+         </div>
+         <div class="bookContentRight">
+            <div class="tabMain">11-12</div>
+            <div class="bookTitle">面向对象基础</div>
+            <div class="bookContent">
+              <div class="text">
+                对象的组成：成员属性、成员方法，Object，{}，对象创建和初始化，工厂模式，构造函数，书写规范，运算符new的执行过程和原理分析，this 的使用，原型和原型链，proto，prototype，通过prototype实现公有属性和方法的复用和继承，Mixed Constructor Function/Prototype Method，面向对象的选项卡分析及实现过程，抽象、封装、继承、多态，</p>
+              </div>
+            </div>
+         </div>
+       </div>
+       <div class="paper">
+         <div class="bookContentLeft">
+           <div class="tabMain" style="top: 180px; background: rgb(225, 86, 113);">13-14</div>
+           <div class="bookTitle">高级面向对象</div>
+           <div class="bookContent">
+             <div class="text">
+               <div>包装对象：String、Number、Boolean，toString()，toString()的重写(overWrite)和实现过程，hasOwnProperty()方法实现自有属性判断，for...in/for...of的使<span style="line-height: 1.42857;">用及特点，constructor属性的使用，instanceof运算符，继承：继承的特点、拷贝继承、类式继承、原型继承，通过继承实现多种不同形态的元素拖拽</span></div>
+             </div>
+           </div>
+         </div>
+         <div class="bookContentRight">
+            <div class="tabMain">13-14</div>
+            <div class="bookTitle">组件开发</div>
+            <div class="bookContent">
+              <div class="text">
+                <p>组件的特点：方法、配置、事件，组件配置的作用和实现，组件方法的作用和实现，实例配置和默认配置 - extend()，组件事件的作用和实现，自定义事件机制的实现，基于属性的事件的弊端，事件监听器addEventListener的实现，事件触发器 trigger的实现，事件容器，仿nodejs中EventEmitter实现事件继承</p>
+              </div>
+            </div>
+         </div>
+       </div>
+       <div class="paper">
+         <div class="bookContentLeft">
+           <div class="tabMain" style="top: 210px; background: rgb(255, 153, 29);">15-16</div>
+           <div class="bookTitle">jQuery基础</div>
+           <div class="bookContent">
+             <div class="text">
+               <p>核心的理念，强大的选择器、简洁的API、优雅的链式、便捷的操作，jQuery整体架构分析，实现自己的 jQuery，匿名函数自执行，闭包，无new 实例化，全局挂载，链式调用的原理和实现，Sizzle核心选择器，$()中的多种参数说明，jQ的DOM/BOM操作，jQ中的event操作，jQuery动画研究，队列，jQuery工具方法和静态方法</p>
+             </div>
+           </div>
+         </div>
+         <div class="bookContentRight">
+            <div class="tabMain">15-16</div>
+            <div class="bookTitle">ajax</div>
+            <div class="bookContent">
+              <div class="text">
+                <p>XMLHttpRequest，open，异步与同步，send，onload事件，responseText，responseXML，HTTP请求方法get和post的区别，HTTP请求头setRequestHeader，中文编码、缓存、安全等问题，文本、JSON、XML，数据解析处理JSON.parse，无刷新上传与下载，onprogress事件，upload对象，FormData，跨域问题的解决，JSONP原理和实现</p>
+              </div>
+            </div>
+         </div>
+       </div>
+       <div class="paper">
+         <div class="bookContentLeft">
+           <div class="tabMain" style="top: 240px; background: rgb(84, 193, 25);">17-18</div>
+           <div class="bookTitle">jQuery应用</div>
+           <div class="bookContent">
+             <div class="text">
+               <p>jQuery选项卡，jQuery拖拽，$.extend()扩展jq静态方法，$().extend()扩展jQuery动态方法，jQuery静态插件--表单验证，正则，自定义事件，参数配置，自定义验证信息，验证提示信息，验证提示方式，验证方式，jQuery动态插件--拖拽，on，off，trigger，事件队列</p>
+             </div>
+           </div>
+         </div>
+         <div class="bookContentRight">
+            <div class="tabMain">17-18</div>
+            <div class="bookTitle">JavaScript兼容性</div>
+            <div class="bookContent">
+              <div class="text">
+                <p>ie/chrome/firefox兼容处理，ECMAScript兼容：trim，forEach，DOM/BOM 兼容:currentStyle、getComputedStyle，cssText和setAttribute，firstChild 、firstElementChild，Event对象对象兼容，事件侦听器：addEventListener、attachEvent，事件兼容：onmousewheel、DOMMouseScroll，Ajax兼容</p>
+              </div>
+            </div>
+         </div>
+       </div>
+       <div class="paper">
+         <div class="bookContentLeft">
+           <div class="tabMain" style="top: 270px; background: rgb(31, 159, 207);">19-20</div>
+           <div class="bookTitle">ECMAScript 6</div>
+           <div class="bookContent">
+             <div class="text">
+               <p>let和const命令，变量的解构赋值，字符串/正则/数字/数组/函数/对象的扩展，Symbol、Proxy和Reflect，二进制数组，Set和Map数据结构，Iterator和for...of循环，Generator函数，Promise对象，异步操作和Async函数，Class，Decorator，Module，Babel转码器</p>
+             </div>
+           </div>
+         </div>
+         <div class="bookContentRight">
+            <div class="tabMain">19-20</div>
+            <div class="bookTitle">zepto&touch.js</div>
+            <div class="bookContent">
+              <div class="text">
+                <p> zepto.js ,tap事件,touchstart,touchend,touchmove,swipe事件,swipeLeft事件，swipeRight事件，swipeUp事件，swipeDown事件,changedTouches,targetTouches,touches,事件点透，滑屏处理，gestrue事件，双指操作旋转和缩放，重力感应，重力加速度，摇一摇，下拉加载，MScroll，MSetGravity,兼容版多指操作</p>
+              </div>
+            </div>
+         </div>
+       </div>
+       <div class="paper">
+         <div class="bookContentLeft">
+           <div class="tabMain" style="top: 300px; background: rgb(27, 95, 179);">21-22</div>
+           <div class="bookTitle">nodeJS</div>
+           <div class="bookContent">
+             <div class="text">
+               <p>nodeJS介绍及使用、环境搭建、全局模块、文件模块、文件夹模块、CommonJS规范、NPM包管理器、Stream模块、Buffer模块、fs文件模块、Net模块、HTTP模块，案例：文件扫描工具、项目自动化工具、实时聊天、文件传输，WEB开发框架介绍，Express和模板引擎swig的使用，Mongodb数据库安装与使用，在线博客/问答系统的搭建</p>
+             </div>
+           </div>
+         </div>
+         <div class="bookContentRight">
+            <div class="tabMain">21-22</div>
+            <div class="bookTitle">Git 及 GitHub</div>
+            <div class="bookContent">
+              <div class="text">
+                <p> git和github，git安装，git连接，项目创建，github SSH，git的基本使用，git clone，git add，暂存区，工作区，git status，git commit－m，git push origin，git log，git diff，git reset，git checkout，git rm，git remote，git fetch，git merge，git pull，fork，branch，GitHub 免费的远程仓库，使用 GitHub 搭建静态博客</p>
+              </div>
+            </div>
+         </div>
+       </div>
+       <div class="paper">
+            <div class="bookContentLeft">
+                <div class="bookTitle">react</div>
+                <div class="bookContent">
+                    <div class="text"><p>UI库,MVC-view,虚拟DOM,单向数据流, JSX,webpack,babel,react,react-dom,结构渲染,组件通信,props,语法糖,组件嵌套,数组储存结构,map,事件规则,ref,refs,组件状态,getInitialState,state,setState,Pub/Sub,生命周期,Mounting,Updating,Unmounting，componentWillMount，componentDidMount，componentWillUpdate，componentDidUpdate，componentWillUnmount</p></div>
+                   
+                </div>
+            </div>
+        </div>
+       <div class="bookRing">
+         <div class="ring1"></div>
+         <div class="ring2"></div>
+         <div class="ring3"></div>
+       </div>
+       <div class="bookRing" style="top:362px;">
+        <div class="ring1"></div>
+         <div class="ring2"></div>
+         <div class="ring3"></div>
+       </div>
+    </div>
+       
+        
+  </div>
+  <div class="bookPaple1"></div>
+  <div class="bookPaple2"></div>
+  <div class="bookPaple3"></div>
+  <div class="bookPaple4"></div>
+  <div class="bookPaple5"></div>
+  <div class="bookPaple6"></div>
+</div>
+</body>
+</html>
